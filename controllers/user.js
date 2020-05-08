@@ -19,6 +19,12 @@ router.post('/testpost', async (req, res) => {
     });
 });
 
+router.post('/testimage', async (req, res) => {
+    res.json({
+        message: "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
+    })
+});
+
 router.post('/register', async (req, res) => {
     const {
         name,
