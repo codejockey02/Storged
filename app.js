@@ -19,23 +19,23 @@ bodyParser.urlencoded({
 
 const userController = require('./controllers/user');
 
-// mongoose.connect(process.env.MONGO_URL, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// }).then(() => {
-//     console.log('Connected to Database.');
-// }).catch((err) => {
-//     console.log(err.stack.toString());
-// });
-
-mongoclient.connect(process.env.MONGO_URL, {
-    useUnifiedTopology: true,
+mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
+    useUnifiedTopology: true
 }).then(() => {
     console.log('Connected to Database.');
 }).catch((err) => {
     console.log(err.stack.toString());
 });
+
+// mongoclient.connect(process.env.MONGO_URL, {
+//     useUnifiedTopology: true,
+//     useNewUrlParser: true,
+// }).then(() => {
+//     console.log('Connected to Database.');
+// }).catch((err) => {
+//     console.log(err.stack.toString());
+// });
 
 app.use('/', userController);
 
