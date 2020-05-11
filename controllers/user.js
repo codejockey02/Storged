@@ -1,8 +1,11 @@
 const express = require('express');
 const User = require('../models/user');
 const register = require('./utils/signup');
+const random = require('randomstring');
 
 const router = new express.Router();
+
+//APIs for testing in FLutter Application
 
 router.get('/testget', async (req, res) => {
     res.json({
@@ -25,13 +28,32 @@ router.post('/testimage', async (req, res) => {
     })
 });
 
+//--------->Actual APIs for App
+
+// router.post('/verify', async (req, res) => {
+//     const {
+//         contact,
+//     } = req.body;
+//     const otp = random.generate({
+//         length: 6,
+//         charset: 'numeric',
+//     });
+
+// });
+
 router.post('/register', async (req, res) => {
     const {
-        name,
         contact,
-        password,
+        type,
+        name,
+        nickname,
+        dob,
+        email,
+        gender,
+        photos
     } = req.body;
-    register.registerUser(name, contact, password)
+
+    register.registerUser(contact, type, name, nickname, dob, email, gender, photos)
         .then(result => res.json({
             error: false,
             code: 201,

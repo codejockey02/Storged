@@ -1,18 +1,27 @@
 const User = require('../../models/user');
 
 
-exports.registerUser = async (name, contact, password) => {
+exports.registerUser = async (contact, type, name, nickname, dob, email, gender, photosURL) => {
     const newUser = new User({
-        name,
         contact,
-        password,
+        type,
+        name,
+        nickname,
+        dob,
+        email,
+        gender,
+        $addToSet: {
+            photos: {
+                $each: photosURL
+            }
+        }
     });
     let check;
     try {
         check = await User.findOne({
             contact,
         }, {
-            password: 1,
+            name: 1,
         });
     } catch (err) {
         console.log(err);
