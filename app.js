@@ -15,7 +15,7 @@ bodyParser.urlencoded({
     limit: '25mb',
 });
 
-// mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 
 const userController = require('./controllers/user');
 
